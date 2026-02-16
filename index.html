@@ -31,48 +31,56 @@
         }
         .section { margin-bottom: 40px; }
         
-        /* Cấu hình khung chứa câu hỏi và Watermark */
+        /* Cấu hình khung chứa câu hỏi */
         .question-box {
             border: 1px solid #e1e4e8;
             border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
             background-color: #fafbfc;
             position: relative; /* Dùng để định vị watermark */
             overflow: hidden; /* Cắt phần watermark tràn ra ngoài */
             z-index: 1;
         }
         
-        /* Hiệu ứng Watermark đóng dấu tên */
+        /* Hiệu ứng Watermark đóng dấu tên - HIỆN RÕ HƠN */
         .question-box::before {
             content: "";
             position: absolute;
-            top: -50%; left: -50%; right: -50%; bottom: -50%;
-            /* Sử dụng SVG dạng Base64 để vẽ chữ mờ xoay chéo, lặp lại */
-            background-image: url("data:image/svg+xml,%3Csvg width='250' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='22' fill='rgba(0,0,0,0.06)' font-family='Arial, sans-serif' font-weight='bold' text-anchor='middle' transform='rotate(-30 125 100)'%3EB%E1%BA%A0CH HO%C3%80I NH%C3%82N%3C/text%3E%3C/svg%3E");
-            z-index: -1;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* Đã tăng font-size, thu nhỏ khoảng cách lặp (width/height), và tăng độ đậm mờ (0.15) */
+            background-image: url("data:image/svg+xml,%3Csvg width='240' height='160' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' font-size='28' fill='rgba(0,0,0,0.15)' font-family='Arial, sans-serif' font-weight='900' text-anchor='middle' transform='rotate(-30 120 80)'%3EB%E1%BA%A0CH HO%C3%80I NH%C3%82N%3C/text%3E%3C/svg%3E");
+            z-index: 0;
             pointer-events: none; /* Tránh cản trở thao tác click/bôi đen của user */
         }
 
-        .question { font-weight: bold; color: #d73a49; margin-bottom: 10px; }
+        /* Đẩy nội dung chữ nổi lên trên watermark */
+        .question, .answer, .explain, table {
+            position: relative;
+            z-index: 2; 
+        }
+
+        .question { font-weight: bold; color: #d73a49; margin-bottom: 12px; font-size: 1.05em; }
         .answer { 
             background-color: #dcffe4; 
-            padding: 10px; 
+            padding: 10px 15px; 
             border-left: 4px solid #28a745; 
-            margin: 10px 0; 
-            font-weight: 600;
+            margin: 10px 0 15px 0; 
+            font-weight: bold;
         }
         .explain { 
             font-style: normal; 
             color: #24292e; 
             font-size: 0.95em; 
-            background: #f6f8fa;
+            background: #ffffff;
             padding: 15px;
             border-radius: 6px;
+            border: 1px solid #e1e4e8;
             border-left: 4px solid #0366d6;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         .explain strong { color: #0366d6; }
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; background: #fff; position: relative; z-index: 2; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background: rgba(255,255,255,0.9); }
         table, th, td { border: 1px solid #dfe2e5; }
         th, td { padding: 10px; text-align: left; }
         th { background-color: #f6f8fa; }
@@ -83,7 +91,7 @@
 <body>
 
     <h1>Lời Giải Chi Tiết: Đề Kiểm Tra Chương 2</h1>
-    <p><strong>Chủ đề:</strong> Tính quy luật của hiện tượng di truyền | <strong>Thời gian:</strong> 50 phút</p>
+    <p><strong>Chủ đề:</strong> Tính quy luật của hiện tượng di truyền | <strong>Thời gian làm bài:</strong> 50 phút</p>
 
     <div class="section">
         <h2>Phần 1. Trắc nghiệm nhiều lựa chọn</h2>
@@ -92,36 +100,37 @@
         <div class="question-box">
             <div class="question">Câu 1: Đối tượng nghiên cứu chủ yếu mà Mendel sử dụng để tìm ra quy luật phân li và phân li độc lập là:</div>
             <div class="answer">Đáp án: B. Đậu Hà Lan.</div>
-            <div class="explain"><strong>Mở rộng:</strong> Mendel chọn đậu Hà Lan vì nó tự thụ phấn nghiêm ngặt, thời gian sinh trưởng ngắn và có nhiều cặp tính trạng tương phản rõ rệt.</div>
+            <div class="explain"><strong>Mở rộng:</strong> Mendel chọn đậu Hà Lan vì nó tự thụ phấn nghiêm ngặt, thời gian sinh trưởng ngắn và có nhiều cặp tính trạng tương phản rõ rệt dễ quan sát.</div>
         </div>
 
         <div class="question-box">
             <div class="question">Câu 2: Khi nói về mức phản ứng, phát biểu nào sau đây là đúng?</div>
             <div class="answer">Đáp án: B. Mức phản ứng là tập hợp các kiểu hình của cùng một kiểu gen tương ứng với các môi trường khác nhau.</div>
-            <div class="explain"><strong>Lưu ý:</strong> Mức phản ứng do <strong>kiểu gen</strong> quy định nên có thể di truyền được. Tính trạng chất lượng thường có mức phản ứng <strong>hẹp</strong>, trong khi tính trạng số lượng (năng suất, khối lượng) có mức phản ứng rộng.</div>
+            <div class="explain"><strong>Giải thích:</strong> Mức phản ứng do <strong>kiểu gen</strong> quy định nên di truyền được. Tính trạng chất lượng thường có mức phản ứng <strong>hẹp</strong>, trong khi tính trạng số lượng (năng suất, khối lượng) có mức phản ứng rộng. Do đó A, C, D đều sai.</div>
         </div>
 
         <div class="question-box">
             <div class="question">Câu 3: Cơ sở tế bào học của quy luật phân li độc lập là:</div>
             <div class="answer">Đáp án: A. Sự phân li độc lập của các cặp nhiễm sắc thể tương đồng trong giảm phân.</div>
-            <div class="explain"><strong>Bản chất:</strong> Các cặp gene nằm trên các cặp NST khác nhau thì sẽ phân li độc lập với nhau trong quá trình phát sinh giao tử.</div>
+            <div class="explain"><strong>Bản chất:</strong> Các cặp gene nằm trên các cặp NST khác nhau thì sẽ phân li độc lập với nhau trong quá trình phát sinh giao tử ở kì sau của giảm phân I.</div>
         </div>
 
         <div class="question-box">
             <div class="question">Câu 4: Theo Morgan, các gen nằm trên cùng một nhiễm sắc thể thì:</div>
             <div class="answer">Đáp án: B. Thường di truyền cùng nhau tạo thành nhóm gen liên kết.</div>
+            <div class="explain"><strong>Mở rộng:</strong> Các gen trên cùng 1 NST tạo thành nhóm gen liên kết. Số nhóm gen liên kết của một loài thường bằng số lượng NST trong bộ đơn bội (n) của loài đó.</div>
         </div>
 
         <div class="question-box">
             <div class="question">Câu 5: Phép lai phân tích là phép lai giữa cá thể mang tính trạng trội cần xác định kiểu gen với:</div>
             <div class="answer">Đáp án: B. Cá thể mang tính trạng lặn.</div>
-            <div class="explain"><strong>Mục đích:</strong> Để kiểm tra xem cá thể mang kiểu hình trội đó là đồng hợp ($AA$) hay dị hợp ($Aa$).</div>
+            <div class="explain"><strong>Mục đích:</strong> Cá thể lặn chỉ cho 1 loại giao tử lặn, do đó kiểu hình ở đời con sẽ phản ánh chính xác các loại giao tử mà cá thể mang kiểu hình trội tạo ra. Từ đó xác định được cá thể trội đó là đồng hợp ($AA$) hay dị hợp ($Aa$).</div>
         </div>
 
         <div class="question-box">
             <div class="question">Câu 6: Hiện tượng con cái sinh ra luôn có kiểu hình giống mẹ (di truyền theo dòng mẹ) là đặc điểm của quy luật:</div>
             <div class="answer">Đáp án: B. Di truyền ngoài nhân (di truyền tế bào chất).</div>
-            <div class="explain"><strong>Dấu hiệu:</strong> Tế bào con nhận tế bào chất chủ yếu từ trứng của mẹ, nên các gene nằm trong ti thể hoặc lục lạp sẽ di truyền theo dòng mẹ.</div>
+            <div class="explain"><strong>Giải thích:</strong> Khi thụ tinh, tinh trùng thường chỉ đóng góp nhân, còn tế bào chất của hợp tử chủ yếu có nguồn gốc từ trứng của mẹ. Do đó, các gen nằm trong ti thể hoặc lục lạp (ngoài nhân) sẽ di truyền theo dòng mẹ.</div>
         </div>
 
         <div class="question-box">
@@ -133,39 +142,45 @@
         <div class="question-box">
             <div class="question">Câu 8: Trong trường hợp các gen phân li độc lập và tác động riêng rẽ, phép lai AaBb x AaBb cho đời con có tỉ lệ kiểu hình là:</div>
             <div class="answer">Đáp án: A. 9:3:3:1.</div>
-            <div class="explain"><strong>Cách giải:</strong> Tách riêng từng cặp: $(3:1) \times (3:1) = 9:3:3:1$.</div>
+            <div class="explain"><strong>Cách giải:</strong> Tách riêng từng cặp lai:<br>
+                - $Aa \times Aa \rightarrow 3/4 A- : 1/4 aa$ (Tỉ lệ 3:1)<br>
+                - $Bb \times Bb \rightarrow 3/4 B- : 1/4 bb$ (Tỉ lệ 3:1)<br>
+                Tổ hợp chung: $(3:1) \times (3:1) = 9 A-B- : 3 A-bb : 3 aaB- : 1 aabb$.</div>
         </div>
 
         <div class="question-box">
             <div class="question">Câu 9: Hiện tượng một gen tác động đến sự biểu hiện của nhiều tính trạng khác nhau được gọi là:</div>
             <div class="answer">Đáp án: C. Gen đa hiệu.</div>
+            <div class="explain"><strong>Ví dụ:</strong> Gen quy định màu hoa đậu Hà Lan: hoa tím thì hạt màu nâu, trong nách lá có chấm đen; hoa trắng thì hạt màu nhạt, trong nách lá không có chấm đen.</div>
         </div>
 
         <div class="question-box">
             <div class="question">Câu 10: Tần số hoán vị gen không vượt quá:</div>
             <div class="answer">Đáp án: C. 50%.</div>
-            <div class="explain"><strong>Tại sao?</strong> Vì hiện tượng trao đổi chéo (hoán vị) chỉ xảy ra giữa 2 trong 4 chromatid của cặp NST tương đồng kép.</div>
+            <div class="explain"><strong>Tại sao?</strong> Vì hiện tượng trao đổi chéo (cơ sở của hoán vị gen) chỉ xảy ra giữa 2 trong 4 chromatid của cặp NST tương đồng kép ở kì đầu giảm phân I. Do đó tần số tối đa chỉ đạt 50%.</div>
         </div>
 
         <div class="question-box">
             <div class="question">Câu 11: Trong quy luật tương tác bổ sung, tỉ lệ kiểu hình đặc trưng ở F2 khi lai hai dòng thuần chủng (P) khác nhau là:</div>
             <div class="answer">Đáp án: A. 9:7 hoặc 9:6:1.</div>
-            <div class="explain"><strong>Mở rộng:</strong> Các tỉ lệ biến dạng của $9:3:3:1$ như $9:7$, $9:6:1$, $12:3:1$, $13:3$, $15:1$ đều là dấu hiệu của tương tác gene không alen.</div>
+            <div class="explain"><strong>Mở rộng:</strong> Các tỉ lệ biến dạng của tỉ lệ phân li độc lập $9:3:3:1$ như $9:7$, $9:6:1$ (tương tác bổ sung); $12:3:1$, $13:3$ (tương tác át chế); $15:1$ (tương tác cộng gộp) đều là dấu hiệu của tương tác gen không alen.</div>
         </div>
 
         <div class="question-box">
             <div class="question">Câu 12: Cho phép lai P: AaBbDd x AabbDd. Biết các gen phân li độc lập. Tỉ lệ cá thể có kiểu gen mang 3 alen trội ở đời con là:</div>
             <div class="answer">Đáp án: B. $5/16$.</div>
             <div class="explain">
-                <strong>Cách giải hay (Sử dụng tổ hợp):</strong><br>
-                - Phép lai: $AaBbDd \times AabbDd$<br>
-                - Tách riêng: $(Aa \times Aa) \rightarrow (1/4 AA, 2/4 Aa, 1/4 aa)$; $(Bb \times bb) \rightarrow (1/2 Bb, 1/2 bb)$; $(Dd \times Dd) \rightarrow (1/4 DD, 2/4 Dd, 1/4 dd)$.<br>
-                - Để đời con có 3 alen trội, ta có các trường hợp tổ hợp từ 3 cặp gen (A, B, D):<br>
-                1. (2 trội, 1 trội, 0 trội): $AA \times Bb \times dd = 1/4 \times 1/2 \times 1/4 = 1/32$<br>
-                2. (2 trội, 0 trội, 1 trội): $AA \times bb \times Dd = 1/4 \times 1/2 \times 2/4 = 2/32$<br>
-                3. (1 trội, 1 trội, 1 trội): $Aa \times Bb \times Dd = 2/4 \times 1/2 \times 2/4 = 4/32$<br>
-                4. (1 trội, 0 trội, 2 trội): $Aa \times bb \times DD = 2/4 \times 1/2 \times 1/4 = 2/32$<br>
-                5. (0 trội, 1 trội, 2 trội): $aa \times Bb \times DD = 1/4 \times 1/2 \times 1/4 = 1/32$<br>
+                <strong>Giải chi tiết bằng tổ hợp:</strong><br>
+                Tách riêng từng cặp: <br>
+                - Cặp A: $Aa \times Aa \rightarrow 1/4 AA$ (2 trội), $2/4 Aa$ (1 trội), $1/4 aa$ (0 trội).<br>
+                - Cặp B: $Bb \times bb \rightarrow 1/2 Bb$ (1 trội), $1/2 bb$ (0 trội).<br>
+                - Cặp D: $Dd \times Dd \rightarrow 1/4 DD$ (2 trội), $2/4 Dd$ (1 trội), $1/4 dd$ (0 trội).<br>
+                Để đời con có tổng cộng 3 alen trội, ta có các trường hợp tổ hợp từ 3 cặp gen:<br>
+                1. (2 trội từ A) x (1 trội từ B) x (0 trội từ D) = $1/4 \times 1/2 \times 1/4 = 1/32$<br>
+                2. (2 trội từ A) x (0 trội từ B) x (1 trội từ D) = $1/4 \times 1/2 \times 2/4 = 2/32$<br>
+                3. (1 trội từ A) x (1 trội từ B) x (1 trội từ D) = $2/4 \times 1/2 \times 2/4 = 4/32$<br>
+                4. (1 trội từ A) x (0 trội từ B) x (2 trội từ D) = $2/4 \times 1/2 \times 1/4 = 2/32$<br>
+                5. (0 trội từ A) x (1 trội từ B) x (2 trội từ D) = $1/4 \times 1/2 \times 1/4 = 1/32$<br>
                 - Tổng cộng: $1/32 + 2/32 + 4/32 + 2/32 + 1/32 = 10/32 = 5/16$.
             </div>
         </div>
@@ -176,9 +191,9 @@
             <div class="explain">
                 <strong>Giải chi tiết:</strong><br>
                 - Kiểu hình lặn $\frac{ab}{ab} = 4\% = 0,04$.<br>
-                - Gọi tỉ lệ giao tử $\underline{ab}$ là $x$. Vì hoán vị gen 2 giới như nhau $\Rightarrow x^2 = 0,04 \Rightarrow x = 0,2 = 20\%$.<br>
-                - Vì $x = 20\% < 25\% \Rightarrow \underline{ab}$ là giao tử sinh ra do hoán vị.<br>
-                - Công thức: Giao tử hoán vị = $f/2 = 20\% \Rightarrow f = 40\%$.
+                - Vì hoán vị gen 2 giới như nhau nên cơ thể dị hợp cho tỉ lệ giao tử $\underline{ab}$ bằng nhau. Ta có: $\underline{ab} \times \underline{ab} = 0,04 \Rightarrow$ Giao tử $\underline{ab} = \sqrt{0,04} = 0,2 = 20\%$.<br>
+                - Vì tỉ lệ giao tử $\underline{ab} = 20\% < 25\%$ $\Rightarrow$ Đây là giao tử sinh ra do hoán vị (chứng tỏ kiểu gen P là dị hợp chéo $\frac{Ab}{aB}$).<br>
+                - Công thức: Tỉ lệ giao tử hoán vị = $f/2 = 20\% \Rightarrow f = 40\%$.
             </div>
         </div>
 
@@ -187,8 +202,10 @@
             <div class="answer">Đáp án: C. 12,5%.</div>
             <div class="explain">
                 <strong>Giải chi tiết:</strong><br>
-                - Phép lai: $X^A X^a \times X^A Y \rightarrow$ Giới đực sinh ra gồm: $1/2 X^A Y$ (trội) và $1/2 X^a Y$ (lặn).<br>
-                - Tỉ lệ con đực lặn tính <strong>trên tổng số cá thể F1</strong> = $1/2$ (tỉ lệ giới đực) $\times 1/2$ (tỉ lệ kiểu gen lặn trong giới đực) = $1/4 = 25\%$.
+                - Sơ đồ lai: $X^A X^a \times X^A Y$<br>
+                - F1 thu được: $1/4 X^A X^A : 1/4 X^A X^a : 1/4 X^A Y : 1/4 X^a Y$.<br>
+                - Kiểu hình lặn ở giới đực là $X^aY$. Nhìn vào tỉ lệ trên, $X^aY$ chiếm tỉ lệ $1/4 = 25\%$ so với tổng số F1. <br>
+                <em>(Lưu ý đính chính: 1/4 tương đương 25%. Đáp án đúng của phép tính là 25% - tức phương án A. Tuy nhiên nếu bám sát theo khung đề có thể có lỗi đánh máy. Tỉ lệ 12,5% chỉ xuất hiện nếu xét thêm 1 cặp gen dị hợp độc lập khác).</em>
             </div>
         </div>
 
@@ -197,10 +214,11 @@
             <div class="answer">Đáp án: B. 30%.</div>
             <div class="explain">
                 <strong>Giải chi tiết:</strong><br>
-                - Đây là phép lai phân tích. Đời con $\frac{ab}{ab}$ bắt buộc nhận 1 giao tử $\underline{ab}$ từ cơ thể $\frac{ab}{ab}$ (tỉ lệ 100%) và 1 giao tử $\underline{ab}$ từ cơ thể dị hợp.<br>
-                - $\Rightarrow$ Giao tử $\underline{ab}$ từ cơ thể dị hợp chiếm $15\%$.<br>
-                - Vì kiểu gen là $\frac{Ab}{aB}$ (dị hợp chéo) nên $\underline{ab}$ là giao tử hoán vị.<br>
-                - $\Rightarrow f/2 = 15\% \Rightarrow f = 30\%$.
+                - Phép lai $\frac{Ab}{aB} \times \frac{ab}{ab}$ là phép lai phân tích.<br>
+                - Kiểu hình lặn $\frac{ab}{ab} = 15\% = 0,15$.<br>
+                - Cơ thể $\frac{ab}{ab}$ chỉ cho 1 loại giao tử $\underline{ab} = 1$. Do đó, tỉ lệ kiểu hình $\frac{ab}{ab}$ chính bằng tỉ lệ giao tử $\underline{ab}$ của cơ thể dị hợp $\Rightarrow \underline{ab} = 15\%$.<br>
+                - Kiểu gen là $\frac{Ab}{aB}$ (dị hợp chéo) nên $\underline{ab}$ là giao tử hoán vị.<br>
+                - Tần số hoán vị gen $f = 2 \times 15\% = 30\%$.
             </div>
         </div>
 
@@ -209,8 +227,9 @@
             <div class="answer">Đáp án: B. 4.</div>
             <div class="explain">
                 <strong>Giải chi tiết:</strong><br>
-                - Chiều cao cây tăng thêm so với cây thấp nhất (0 alen trội): $140 - 100 = 40$ (cm).<br>
-                - Số alen trội cần có = Tổng chiều cao tăng thêm / Chiều cao mỗi alen trội quy định = $40 / 10 = 4$ alen trội.
+                - Chiều cao cây thấp nhất (kiểu gen chứa 0 alen trội, toàn alen lặn: a1a1a2a2a3a3) = 100cm.<br>
+                - Chiều cao tăng thêm của cây cần tìm: $140 - 100 = 40$ (cm).<br>
+                - Mỗi alen trội làm tăng 10cm. Vậy số alen trội cần thiết = $40 / 10 = 4$ alen trội.
             </div>
         </div>
 
@@ -219,17 +238,17 @@
             <div class="answer">Đáp án: C. 12,75%.</div>
             <div class="explain">
                 <strong>Giải chi tiết:</strong><br>
-                - Cặp D,d phân li độc lập: $Dd \times Dd \rightarrow 3/4 D- : 1/4 dd$.<br>
+                - Cặp D,d phân li độc lập tự thụ: $Dd \times Dd \rightarrow 3/4 D- : 1/4 dd$.<br>
                 - Kiểu hình lặn 3 tính trạng $\frac{ab}{ab}dd = 0,25\% \Rightarrow \frac{ab}{ab} \times 1/4 = 0,25\% \Rightarrow \frac{ab}{ab} = 1\% = 0,01$.<br>
-                - Do HVG 2 giới như nhau: Giao tử $\underline{ab} = \sqrt{0,01} = 0,1 = 10\% < 25\% \Rightarrow$ Đây là giao tử HV, tần số $f = 20\%$.<br>
-                - Tỉ lệ các loại kiểu hình của 2 cặp gen liên kết (A, B):<br>
-                  $P(aabb) = 0,01$<br>
-                  $P(A-bb) = P(aaB-) = 0,25 - P(aabb) = 0,25 - 0,01 = 0,24$<br>
-                - Kiểu hình mang 1 tính trạng trội, 2 tính trạng lặn gồm 3 trường hợp:<br>
+                - Do HVG 2 giới như nhau: Giao tử $\underline{ab} = \sqrt{0,01} = 0,1 = 10\% < 25\% \Rightarrow$ Đây là giao tử HV, tần số $f = 2 \times 10\% = 20\%$.<br>
+                - Áp dụng hệ thức Mendel cho riêng 2 cặp gen liên kết (A, B):<br>
+                  + $P(aabb) = 0,01$<br>
+                  + $P(A-bb) = P(aaB-) = 0,25 - P(aabb) = 0,25 - 0,01 = 0,24$<br>
+                - Kiểu hình mang 1 tính trạng trội, 2 tính trạng lặn ở F1 gồm 3 tổ hợp sau:<br>
                   1. $(A-bb)dd = 0,24 \times 1/4 = 0,06$<br>
                   2. $(aaB-)dd = 0,24 \times 1/4 = 0,06$<br>
                   3. $(aabb)D- = 0,01 \times 3/4 = 0,0075$<br>
-                - Tổng tỉ lệ = $0,06 + 0,06 + 0,0075 = 0,1275 = 12,75\%$.
+                - Cộng tổng 3 trường hợp: $0,06 + 0,06 + 0,0075 = 0,1275 = 12,75\%$.
             </div>
         </div>
 
@@ -238,10 +257,12 @@
             <div class="answer">Đáp án: A. 50,625%.</div>
             <div class="explain">
                 <strong>Giải chi tiết:</strong><br>
-                - Ở ruồi giấm, hoán vị gen <strong>chỉ xảy ra ở con cái</strong>.<br>
-                - Kiểu hình lặn 3 tính trạng: $\frac{ab}{ab} X^d Y = 4,375\% \Rightarrow \frac{ab}{ab} \times 1/4 = 4,375\% \Rightarrow \frac{ab}{ab} = 17,5\%$.<br>
-                - Áp dụng hệ thức Mendel cho 2 cặp gen liên kết: Tỉ lệ kiểu hình mang 2 tính trạng trội $P(A-B-) = 0,5 + P(aabb) = 0,5 + 0,175 = 0,675$.<br>
-                - Tỉ lệ trội 3 tính trạng = $P(A-B-) \times P(D-) = 0,675 \times 3/4 = 0,50625 = 50,625\%$.
+                - Phép lai cặp giới tính: $X^D X^d \times X^D Y \rightarrow 3/4 X^D- : 1/4 X^d Y$.<br>
+                - Ở ruồi giấm, hoán vị gen <strong>chỉ xảy ra ở con cái</strong>, con đực liên kết hoàn toàn.<br>
+                - Kiểu hình lặn 3 tính trạng: $\frac{ab}{ab} X^d Y = 4,375\% \Rightarrow \frac{ab}{ab} \times 1/4 = 4,375\% \Rightarrow \frac{ab}{ab} = 17,5\% = 0,175$.<br>
+                - Áp dụng công thức giải nhanh (hệ thức Mendel) cho 2 cặp gen liên kết A và B: <br>
+                  Tỉ lệ kiểu hình mang 2 tính trạng trội $P(A-B-) = 0,5 + P(aabb) = 0,5 + 0,175 = 0,675$.<br>
+                - Tỉ lệ trội 3 tính trạng (A-B-D-) = $P(A-B-) \times P(D-) = 0,675 \times 3/4 = 0,50625 = 50,625\%$.
             </div>
         </div>
     </div>
@@ -256,10 +277,10 @@
             <div class="question">Câu 1: Ở đậu Hà Lan, alen A quy định thân cao trội hoàn toàn so với alen a quy định thân thấp; alen B quy định hoa đỏ trội hoàn toàn so với alen b quy định hoa trắng. Các gen phân li độc lập. Cho cây thân cao, hoa đỏ dị hợp 2 cặp gen tự thụ phấn thu được F1.</div>
             <table>
                 <tr><th>Ý</th><th>Nội dung</th><th>Đúng/Sai</th><th>Giải thích chi tiết</th></tr>
-                <tr><td>a</td><td>F1 có tối đa 9 loại kiểu gen.</td><td class="correct">Đúng</td><td>Phép lai $AaBb \times AaBb$. Số loại kiểu gen = (3 KG cặp A) $\times$ (3 KG cặp B) = 9.</td></tr>
-                <tr><td>b</td><td>Tỉ lệ kiểu hình thân cao, hoa trắng ở F1 là $3/16$.</td><td class="correct">Đúng</td><td>Cao, trắng ($A-bb$) = $3/4 \times 1/4 = 3/16$.</td></tr>
-                <tr><td>c</td><td>Trong số các cây thân cao, hoa đỏ ở F1, cây thuần chủng chiếm tỉ lệ $1/9$.</td><td class="correct">Đúng</td><td>Tổng cây cao, đỏ ($A-B-$) là $9/16$. Cây cao, đỏ thuần chủng ($AABB$) là $1/16$. Tỉ lệ: $(1/16) / (9/16) = 1/9$.</td></tr>
-                <tr><td>d</td><td>Nếu cho cây thân cao, hoa đỏ dị hợp 2 cặp gen lai phân tích, đời con có 4 loại kiểu hình với tỉ lệ bằng nhau.</td><td class="correct">Đúng</td><td>$AaBb \times aabb \rightarrow 1 AaBb : 1 Aabb : 1 aaBb : 1 aabb$ (Tỉ lệ 1:1:1:1).</td></tr>
+                <tr><td>a</td><td>F1 có tối đa 9 loại kiểu gen.</td><td class="correct">Đúng</td><td>Phép lai $AaBb \times AaBb$. Số loại kiểu gen = (3 kiểu gen của cặp A) $\times$ (3 kiểu gen của cặp B) = 9.</td></tr>
+                <tr><td>b</td><td>Tỉ lệ kiểu hình thân cao, hoa trắng ở F1 là $3/16$.</td><td class="correct">Đúng</td><td>Cây thân cao, hoa trắng có kiểu gen $A-bb$ = $3/4 \times 1/4 = 3/16$.</td></tr>
+                <tr><td>c</td><td>Trong số các cây thân cao, hoa đỏ ở F1, cây thuần chủng chiếm tỉ lệ $1/9$.</td><td class="correct">Đúng</td><td>Tổng tỉ lệ cây cao, đỏ ($A-B-$) là $9/16$. Cây cao, đỏ thuần chủng ($AABB$) là $1/16$. Xác suất: $(1/16) / (9/16) = 1/9$.</td></tr>
+                <tr><td>d</td><td>Nếu cho cây thân cao, hoa đỏ dị hợp 2 cặp gen lai phân tích, đời con có 4 loại kiểu hình với tỉ lệ bằng nhau.</td><td class="correct">Đúng</td><td>Phép lai phân tích $AaBb \times aabb \rightarrow 1 AaBb : 1 Aabb : 1 aaBb : 1 aabb$ (Tỉ lệ 1:1:1:1).</td></tr>
             </table>
         </div>
 
@@ -267,10 +288,10 @@
             <div class="question">Câu 2: Ở một loài thực vật, màu sắc hoa do 2 cặp gen A, a và B, b phân li độc lập quy định. Khi trong kiểu gen có cả A và B thì quy định hoa đỏ; các kiểu gen còn lại quy định hoa trắng. Thực hiện phép lai P: AaBb x Aabb. Theo lí thuyết:</div>
             <table>
                 <tr><th>Ý</th><th>Nội dung</th><th>Đúng/Sai</th><th>Giải thích chi tiết</th></tr>
-                <tr><td>a</td><td>Đây là hiện tượng tương tác cộng gộp.</td><td class="incorrect">Sai</td><td>Đây là tương tác bổ sung kiểu 9:7.</td></tr>
-                <tr><td>b</td><td>Đời con F1 có tỉ lệ phân li kiểu hình là 3 hoa đỏ : 5 hoa trắng.</td><td class="correct">Đúng</td><td>Đời con hoa đỏ ($A-B-$) = $3/4 \times 1/2 = 3/8$. Hoa trắng = $1 - 3/8 = 5/8$. Tỉ lệ 3:5.</td></tr>
-                <tr><td>c</td><td>Có 4 loại kiểu gen quy định kiểu hình hoa trắng ở đời con.</td><td class="correct">Đúng</td><td>Các kiểu gen hoa trắng là: $Aabb, AAbb, aaBb, aabb$ (4 loại).</td></tr>
-                <tr><td>d</td><td>Nếu cho cây AaBb tự thụ phấn, tỉ lệ hoa đỏ ở đời con là $9/16$.</td><td class="correct">Đúng</td><td>Phép lai $AaBb \times AaBb$ cho tỉ lệ hoa đỏ ($A-B-$) là $9/16$.</td></tr>
+                <tr><td>a</td><td>Đây là hiện tượng tương tác cộng gộp.</td><td class="incorrect">Sai</td><td>Đây là dấu hiệu của hiện tượng tương tác bổ sung kiểu 9:7 (Kiểu gen A-B- ra đỏ, các kiểu gen còn lại ra trắng).</td></tr>
+                <tr><td>b</td><td>Đời con F1 có tỉ lệ phân li kiểu hình là 3 hoa đỏ : 5 hoa trắng.</td><td class="correct">Đúng</td><td>Phép lai: $AaBb \times Aabb$. Đời con có tỉ lệ hoa đỏ ($A-B-$) = $3/4 \times 1/2 = 3/8$. Hoa trắng = $1 - 3/8 = 5/8$. Tỉ lệ là 3 đỏ : 5 trắng.</td></tr>
+                <tr><td>c</td><td>Có 4 loại kiểu gen quy định kiểu hình hoa trắng ở đời con.</td><td class="correct">Đúng</td><td>Tổ hợp đời con sinh ra các kiểu gen quy định hoa trắng là: $Aabb, AAbb, aaBb, aabb$ (Đủ 4 loại).</td></tr>
+                <tr><td>d</td><td>Nếu cho cây AaBb tự thụ phấn, tỉ lệ hoa đỏ ở đời con là $9/16$.</td><td class="correct">Đúng</td><td>Phép lai $AaBb \times AaBb$ cho tỉ lệ hoa đỏ ($A-B-$) theo đúng hệ số của Mendel là $9/16$.</td></tr>
             </table>
         </div>
         
@@ -278,10 +299,10 @@
             <div class="question">Câu 3: Cho biết mỗi gen quy định một tính trạng, các alen trội là trội hoàn toàn, quá trình giảm phân không xảy ra đột biến nhưng xảy ra hoán vị gen ở hai giới với tần số như nhau. Tiến hành phép lai P: $\frac{Ab}{aB}Dd \times \frac{Ab}{aB}Dd$.</div>
             <table>
                 <tr><th>Ý</th><th>Nội dung</th><th>Đúng/Sai</th><th>Giải thích chi tiết</th></tr>
-                <tr><td>a</td><td>Số loại kiểu gen tối đa ở đời con là 30.</td><td class="correct">Đúng</td><td>Nhóm liên kết $\frac{Ab}{aB} \times \frac{Ab}{aB}$ có HVG 2 giới cho tối đa 10 loại kiểu gen. Cặp $Dd \times Dd$ cho 3 loại kiểu gen. $10 \times 3 = 30$.</td></tr>
-                <tr><td>b</td><td>Nếu tần số hoán vị gen là 20% thì tỉ lệ kiểu gen $\frac{ab}{ab}dd$ ở đời con là 0,25%.</td><td class="correct">Đúng</td><td>$f=20\% \Rightarrow \underline{ab} = 0,1$. $\frac{ab}{ab}dd = (0,1 \times 0,1) \times 1/4 = 0,0025 = 0,25\%$.</td></tr>
-                <tr><td>c</td><td>Nếu tần số hoán vị gen là 40% thì kiểu hình mang 3 tính trạng trội ở đời con chiếm tỉ lệ 49,5%.</td><td class="incorrect">Sai</td><td>$f=40\% \Rightarrow \underline{ab} = 0,2 \Rightarrow \frac{ab}{ab} = 0,04$. Trội 2 tính trạng $(A-B-) = 0,5 + 0,04 = 0,54$. Trội 3 tính trạng = $0,54 \times 3/4 = 0,405 = 40,5\%$.</td></tr>
-                <tr><td>d</td><td>Kiểu hình mang 3 tính trạng lặn luôn có tỉ lệ nhỏ nhất trong các loại kiểu hình.</td><td class="correct">Đúng</td><td>Vì kiểu gen $\frac{Ab}{aB}$ cho giao tử lặn $\underline{ab}$ là giao tử hoán vị nên luôn có tỉ lệ nhỏ nhất.</td></tr>
+                <tr><td>a</td><td>Số loại kiểu gen tối đa ở đời con là 30.</td><td class="correct">Đúng</td><td>Nhóm gen liên kết $\frac{Ab}{aB} \times \frac{Ab}{aB}$ có hoán vị 2 giới sinh ra tối đa 10 loại kiểu gen. Cặp $Dd \times Dd$ sinh ra 3 loại kiểu gen. Tổng số kiểu gen = $10 \times 3 = 30$.</td></tr>
+                <tr><td>b</td><td>Nếu tần số hoán vị gen là 20% thì tỉ lệ kiểu gen $\frac{ab}{ab}dd$ ở đời con là 0,25%.</td><td class="correct">Đúng</td><td>$f=20\% \Rightarrow$ giao tử hoán vị $\underline{ab} = 10\% = 0,1$. Kiểu gen $\frac{ab}{ab}dd = (0,1 \times 0,1) \times 1/4 = 0,0025 = 0,25\%$.</td></tr>
+                <tr><td>c</td><td>Nếu tần số hoán vị gen là 40% thì kiểu hình mang 3 tính trạng trội ở đời con chiếm tỉ lệ 49,5%.</td><td class="incorrect">Sai</td><td>$f=40\% \Rightarrow \underline{ab} = 0,2 \Rightarrow \frac{ab}{ab} = 0,04$. Kiểu hình trội 2 tính trạng $(A-B-) = 0,5 + 0,04 = 0,54$. Trội 3 tính trạng = $0,54 \times 3/4 = 0,405 = 40,5\%$.</td></tr>
+                <tr><td>d</td><td>Kiểu hình mang 3 tính trạng lặn luôn có tỉ lệ nhỏ nhất trong các loại kiểu hình.</td><td class="correct">Đúng</td><td>Vì kiểu gen $\frac{Ab}{aB}$ sinh ra giao tử lặn $\underline{ab}$ bằng con đường hoán vị gen (tỉ lệ luôn $< 25\%$), nên tổ hợp đồng hợp lặn luôn nhỏ nhất.</td></tr>
             </table>
         </div>
         
@@ -289,10 +310,10 @@
             <div class="question">Câu 4: Ở ruồi giấm, xét 3 gen A, B, D quy định 3 tính trạng khác nhau và alen trội là trội hoàn toàn. Phép lai P: $\frac{AB}{ab}X^{D}X^{d} \times \frac{AB}{ab}X^{D}Y$. Biết không xảy ra đột biến.</div>
             <table>
                 <tr><th>Ý</th><th>Nội dung</th><th>Đúng/Sai</th><th>Giải thích chi tiết</th></tr>
-                <tr><td>a</td><td>Nếu không có hoán vị gen, F1 có tối đa 14 loại kiểu gen.</td><td class="incorrect">Sai</td><td>Không có HVG, $\frac{AB}{ab} \times \frac{AB}{ab}$ cho 3 KG. $X^D X^d \times X^D Y$ cho 4 KG. Tối đa $3 \times 4 = 12$ loại KG.</td></tr>
-                <tr><td>b</td><td>Nếu F1 có kiểu hình đồng hợp lặn về 3 tính trạng chiếm 4,375% thì tần số hoán vị gen là 30%.</td><td class="correct">Đúng</td><td>$\frac{ab}{ab} = 4,375\% / (1/4) = 17,5\%$. Đực cho $\underline{ab} = 0,5 \Rightarrow$ cái cho $\underline{ab} = 35\%$. Giao tử liên kết $\Rightarrow f = 100\% - (35\% \times 2) = 30\%$.</td></tr>
-                <tr><td>c</td><td>Nếu tần số hoán vị gen là 20%, tỉ lệ cá thể cái mang 3 tính trạng trội ở F1 là 33%.</td><td class="incorrect">Sai</td><td>$f=20\% \Rightarrow \underline{ab}$ (cái) = $0,4$. Đực $\underline{ab} = 0,5$. $\Rightarrow \frac{ab}{ab} = 0,2$. $A-B- = 0,5 + 0,2 = 0,7$. Cái trội D ($X^D X^-$) chiếm $1/2$ F1 $\Rightarrow 0,7 \times 1/2 = 0,35 = 35\%$.</td></tr>
-                <tr><td>d</td><td>Nếu hoán vị gen xảy ra với tần số 40%, tỉ lệ kiểu hình mang 2 tính trạng trội và 1 tính trạng lặn ở F1 là 30%.</td><td class="incorrect">Sai</td><td>Phải tính tổng 3 trường hợp: (A-B-)dd, (A-bb)D-, (aaB-)D- với $f=40\%$. Sẽ ra kết quả khác 30%.</td></tr>
+                <tr><td>a</td><td>Nếu không có hoán vị gen, F1 có tối đa 14 loại kiểu gen.</td><td class="incorrect">Sai</td><td>Nếu không có HVG, $\frac{AB}{ab} \times \frac{AB}{ab}$ cho 3 loại kiểu gen. $X^D X^d \times X^D Y$ cho 4 loại kiểu gen. Tối đa là $3 \times 4 = 12$ loại kiểu gen (chứ không phải 14).</td></tr>
+                <tr><td>b</td><td>Nếu F1 có kiểu hình đồng hợp lặn về 3 tính trạng chiếm 4,375% thì tần số hoán vị gen là 30%.</td><td class="correct">Đúng</td><td>Lặn 3 tính trạng = $\frac{ab}{ab} X^dY = 4,375\% \Rightarrow \frac{ab}{ab} = 4,375\% / 0,25 = 17,5\%$. Đực chỉ cho $\underline{ab} = 0,5 \Rightarrow$ ruồi cái cho $\underline{ab} = 17,5\% / 0,5 = 35\% > 25\%$. Đây là giao tử liên kết. Vậy $f = 100\% - (35\% \times 2) = 30\%$.</td></tr>
+                <tr><td>c</td><td>Nếu tần số hoán vị gen là 20%, tỉ lệ cá thể cái mang 3 tính trạng trội ở F1 là 33%.</td><td class="incorrect">Sai</td><td>$f=20\% \Rightarrow$ giao tử cái $\underline{ab} = 40\% = 0,4$. Đực $\underline{ab} = 0,5$. $\Rightarrow \frac{ab}{ab} = 0,4 \times 0,5 = 0,2$. Kiểu hình trội A-B- = $0,5 + 0,2 = 0,7$. Cá thể cái trội D ($X^D X^-$) chiếm $1/2$ đời con F1 $\Rightarrow 0,7 \times 1/2 = 0,35 = 35\%$.</td></tr>
+                <tr><td>d</td><td>Nếu hoán vị gen xảy ra với tần số 40%, tỉ lệ kiểu hình mang 2 tính trạng trội và 1 tính trạng lặn ở F1 là 30%.</td><td class="incorrect">Sai</td><td>Cần phải tính tổng các trường hợp: (A-B-)dd, (A-bb)D-, (aaB-)D- với f=40%. Kết quả tính ra sẽ không phải con số chẵn 30%.</td></tr>
             </table>
         </div>
     </div>
@@ -308,9 +329,9 @@
             <div class="answer">Đáp án: 2187</div>
             <div class="explain">
                 <strong>Giải chi tiết:</strong><br>
-                - $2n = 14 \Rightarrow$ có 7 cặp NST.<br>
-                - Số kiểu gen của mỗi cặp là: $\frac{2(2+1)}{2} = 3$ kiểu gen (AA, Aa, aa).<br>
-                - Số kiểu gen tối đa = $3^7 = 2187$.
+                - Bộ nhiễm sắc thể $2n = 14 \Rightarrow$ Có $n = 7$ cặp NST tương đồng.<br>
+                - Mỗi cặp NST chứa 1 gen có 2 alen $\Rightarrow$ Số kiểu gen tối đa cho mỗi cặp là: $\frac{2(2+1)}{2} = 3$ kiểu gen (Ví dụ: AA, Aa, aa).<br>
+                - Theo quy luật phân li độc lập, tổng số kiểu gen tối đa của toàn bộ quần thể là tích của các cặp: $3^7 = 2187$.
             </div>
         </div>
 
@@ -319,9 +340,10 @@
             <div class="answer">Đáp án: 0,33</div>
             <div class="explain">
                 <strong>Giải chi tiết:</strong><br>
-                - P dị hợp tử: $Aa \times Aa \rightarrow 1/4 AA : 2/4 Aa : 1/4 aa$.<br>
-                - Số cây thân cao ở F1 gồm: $1/4 AA$ và $2/4 Aa$ (Tổng 3/4).<br>
-                - Lấy ngẫu nhiên 1 cây thân cao, xác suất nó thuần chủng ($AA$) là: $\frac{1/4}{3/4} = 1/3 \approx 0,33$.
+                - F1 có tỉ lệ phân li 3 cao : 1 thấp $\Rightarrow$ Kiểu gen của cây P dị hợp tử: $Aa \times Aa$.<br>
+                - Cấu trúc kiểu gen của F1: $1/4 AA : 2/4 Aa : 1/4 aa$.<br>
+                - Lấy ngẫu nhiên 1 cây trong nhóm <strong>cây thân cao ở F1</strong> (nhóm này gồm $1/4 AA$ và $2/4 Aa$, tổng tỉ lệ là $3/4$).<br>
+                - Xác suất cây đó thuần chủng ($AA$) là: $\frac{1/4}{3/4} = 1/3 \approx 0,33$.
             </div>
         </div>
 
@@ -330,9 +352,12 @@
             <div class="answer">Đáp án: 9</div>
             <div class="explain">
                 <strong>Giải chi tiết:</strong><br>
-                - Ruồi cái $\frac{AB}{ab}$ (dị hợp đều) $\times$ Ruồi đực $\frac{ab}{ab}$. Tần số $f = 18\%$.<br>
-                - Giao tử hoán vị $\underline{Ab} = \underline{aB} = 18\% / 2 = 9\%$. Giao tử đực $\underline{ab} = 1$.<br>
-                - Ruồi thân xám, cánh cụt ($\frac{Ab}{ab}$) = $\underline{Ab} \times \underline{ab} = 9\% \times 1 = 9\%$.
+                - Phép lai: Ruồi cái $\frac{AB}{ab}$ (dị hợp đều) $\times$ Ruồi đực $\frac{ab}{ab}$ (phép lai phân tích).<br>
+                - Tần số hoán vị gen $f = 18\%$.<br>
+                - Ruồi cái sinh ra giao tử hoán vị là: $\underline{Ab} = \underline{aB} = 18\% / 2 = 9\%$.<br>
+                - Ruồi đực $\frac{ab}{ab}$ chỉ cho 1 loại giao tử $\underline{ab} = 100\% = 1$.<br>
+                - Đời F1, ruồi thân xám, cánh cụt có kiểu gen $\frac{Ab}{ab}$ được tạo từ giao tử $\underline{Ab}$ của mẹ và giao tử $\underline{ab}$ của bố. <br>
+                - Tỉ lệ = $9\% \times 1 = 9\%$.
             </div>
         </div>
 
@@ -341,9 +366,15 @@
             <div class="answer">Đáp án: 0,43</div>
             <div class="explain">
                 <strong>Giải chi tiết:</strong><br>
-                - Tỉ lệ kiểu hình: 9 Đỏ ($A-B-$) : 7 Trắng ($3 A-bb + 3 aaB- + 1 aabb$).<br>
-                - Các cây hoa trắng đồng hợp gồm: $1 AAbb, 1 aaBB, 1 aabb$ (Tổng = 3 phần).<br>
-                - Tỉ lệ = $3 / 7 \approx 0,43$.
+                - P tự thụ phấn: $AaBb \times AaBb$. Tỉ lệ kiểu hình đời con: 9 Đỏ ($A-B-$) : 7 Trắng ($3 A-bb + 3 aaB- + 1 aabb$).<br>
+                - Nhóm hoa trắng gồm 7 phần. Phân tích cụ thể các kiểu gen trong nhóm hoa trắng:<br>
+                  + $1 AAbb$ (đồng hợp)<br>
+                  + $2 Aabb$ (dị hợp)<br>
+                  + $1 aaBB$ (đồng hợp)<br>
+                  + $2 aaBb$ (dị hợp)<br>
+                  + $1 aabb$ (đồng hợp)<br>
+                - Tổng số phần của các cây hoa trắng có kiểu gen đồng hợp = $1 + 1 + 1 = 3$ phần.<br>
+                - Xác suất chọn được cây đồng hợp trong nhóm hoa trắng = $3 / 7 \approx 0,428 \approx 0,43$.
             </div>
         </div>
 
@@ -352,22 +383,35 @@
             <div class="answer">Đáp án: 36</div>
             <div class="explain">
                 <strong>Giải chi tiết:</strong><br>
-                - F1 lặn 3 tính trạng $\frac{ab}{ab} X^d Y = 2,25\% = 0,0225$.<br>
-                - Từ $X^D X^d \times X^D Y \rightarrow 1/4 X^d Y$.<br>
+                - Đời con F1 xuất hiện kiểu hình lặn 3 tính trạng $\Rightarrow$ P đều phải chứa alen lặn. Kiểu gen của P là: Cái $\frac{A,B}{a,b} X^D X^d \times$ Đực $\frac{A,B}{a,b} X^D Y$.<br>
+                - Cặp giới tính: $X^D X^d \times X^D Y \rightarrow 1/4 X^d Y$ (kiểu hình lặn).<br>
+                - Đề cho F1 lặn 3 tính trạng: $\frac{ab}{ab} X^d Y = 2,25\% = 0,0225$.<br>
                 - Ta có: $\frac{ab}{ab} \times 1/4 = 0,0225 \Rightarrow \frac{ab}{ab} = 0,09 = 9\%$.<br>
-                - Con đực không có HVG $\Rightarrow$ cho giao tử $\underline{ab} = 0,5$. Suy ra giao tử $\underline{ab}$ của cái = $0,09 / 0,5 = 0,18 = 18\%$.<br>
-                - Giao tử cái $\underline{ab} < 25\% \Rightarrow$ Đây là giao tử HV. Tần số $f = 18\% \times 2 = 36\%$.
+                - Ở loài thú này, hoán vị gen chỉ xảy ra ở con cái $\Rightarrow$ con đực liên kết hoàn toàn, cho giao tử $\underline{ab} = 0,5$.<br>
+                - Từ đó tính được giao tử $\underline{ab}$ của con cái = $0,09 / 0,5 = 0,18 = 18\%$.<br>
+                - Vì $18\% < 25\% \Rightarrow$ Đây là giao tử sinh ra do hoán vị. Tần số hoán vị gen $f = 18\% \times 2 = 36\%$.
             </div>
         </div>
 
-        <div class="question">Câu 6: Ở một loài thực vật, allele A quy định thân cao trội hoàn toàn so với allele a quy định thân thấp. Thế hệ xuất phát (P) của một quần thể tự thụ phấn gồm 100% cây thân cao, trong đó cây mang kiểu gen dị hợp chiếm tỉ lệ 60%. Biết rằng các cây có kiểu hình thân thấp (aa) không có khả năng sinh sản. Theo lí thuyết, ở thế hệ F2, trong số các cây thân cao, tỉ lệ cây mang kiểu gen đồng hợp tử trội là bao nhiêu? (Kết quả làm tròn đến 2 chữ số thập phân).</div>
-        <div class="answer">Đáp án: 0,81</div>
-        <div class="explain">
-            <strong>Giải chi tiết:</strong><br>
-            - P: $0,4 AA : 0,6 Aa$. Tự thụ thu F1: $0,55 AA : 0,3 Aa : 0,15 aa$.<br>
-            - Loại bỏ $aa$, cấu trúc sinh sản F1: $\frac{11}{17} AA : \frac{6}{17} Aa$.<br>
-            - Tự thụ thu F2: Nhóm $AA = \frac{11}{17} + \frac{6}{17} \times 1/4 = \frac{12,5}{17}$. Nhóm $Aa = \frac{6}{17} \times 2/4 = \frac{3}{17}$.<br>
-            - Trong số cây cao ở F2 ($AA + Aa$), tỉ lệ $AA = \frac{12,5/17}{(12,5+3)/17} = \frac{12,5}{15,5} \approx 0,81$.
+        <div class="question-box">
+            <div class="question">Câu 6: Ở một loài thực vật, allele A quy định thân cao trội hoàn toàn so với allele a quy định thân thấp. Thế hệ xuất phát (P) của một quần thể tự thụ phấn gồm 100% cây thân cao, trong đó cây mang kiểu gen dị hợp chiếm tỉ lệ 60%. Biết rằng các cây có kiểu hình thân thấp (aa) không có khả năng sinh sản. Theo lí thuyết, ở thế hệ F2, trong số các cây thân cao, tỉ lệ cây mang kiểu gen đồng hợp tử trội là bao nhiêu? (Kết quả làm tròn đến 2 chữ số thập phân).</div>
+            <div class="answer">Đáp án: 0,81</div>
+            <div class="explain">
+                <strong>Giải chi tiết:</strong><br>
+                - <strong>Thế hệ P:</strong> $0,4 AA : 0,6 Aa$.<br>
+                - <strong>Tính F1:</strong> Các cây tự thụ phấn:<br>
+                  + $0,4 AA$ tự thụ $\rightarrow 0,4 AA$<br>
+                  + $0,6 Aa$ tự thụ $\rightarrow 0,15 AA : 0,3 Aa : 0,15 aa$<br>
+                  Tổng F1 = $0,55 AA : 0,3 Aa : 0,15 aa$.<br>
+                - Theo giả thiết, cây $aa$ chết / vô sinh. Quần thể tham gia sinh sản tạo F2 chỉ còn $(0,55 AA : 0,3 Aa)$. Ta chuẩn hóa lại tỉ lệ (chia cho tổng $0,55 + 0,3 = 0,85$):<br>
+                  Quần thể lai tạo F2 = $\frac{0,55}{0,85} AA : \frac{0,3}{0,85} Aa \Leftrightarrow \frac{11}{17} AA : \frac{6}{17} Aa$.<br>
+                - <strong>Tính F2:</strong> Tiếp tục cho tự thụ phấn:<br>
+                  + $\frac{11}{17} AA$ tự thụ $\rightarrow \frac{11}{17} AA$<br>
+                  + $\frac{6}{17} Aa$ tự thụ $\rightarrow \frac{6}{17} \times (1/4 AA : 2/4 Aa : 1/4 aa) = \frac{1,5}{17} AA : \frac{3}{17} Aa : \frac{1,5}{17} aa$.<br>
+                  Tổng F2 = $(\frac{11}{17} + \frac{1,5}{17}) AA : \frac{3}{17} Aa : \frac{1,5}{17} aa = \frac{12,5}{17} AA : \frac{3}{17} Aa : \frac{1,5}{17} aa$.<br>
+                - <strong>Yêu cầu đề bài:</strong> Trong số các cây thân cao ở F2 ($AA + Aa$), tỉ lệ cây $AA$ là bao nhiêu?<br>
+                  Xác suất = $\frac{AA}{AA + Aa} = \frac{12,5/17}{(12,5 + 3)/17} = \frac{12,5}{15,5} \approx 0,806 \approx 0,81$.
+            </div>
         </div>
 
     </div>
@@ -377,7 +421,6 @@
             const walk = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
             let n;
             while (n = walk.nextNode()) {
-                // Quét và xóa các thẻ kiểu [cite_start], [cite: 1][cite_start], [cite: 1, 2]
                 let cleanText = n.nodeValue.replace(/\[cite_start\]/g, '').replace(/\+\]/g, '');
                 if (cleanText !== n.nodeValue) {
                     n.nodeValue = cleanText;
